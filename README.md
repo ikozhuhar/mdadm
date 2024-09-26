@@ -49,7 +49,7 @@ $ cat /proc/mdstat
 
 ###### Отмонтировать RAID
 ```php
-$ sudo umount /mount/md0
+$ sudo umount /mnt/md0
 ```
 
 ###### Останавливаем RAID-массив
