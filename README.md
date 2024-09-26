@@ -3,8 +3,8 @@
 # Собрать RAID0/1/5/10
 
 ##### Смотрим блочные устройства
-```$ sudo apt install lsscsi  
-$ sudo lshw -short | grep disk  ```
+$ sudo apt install lsscsi  
+$ sudo lshw -short | grep disk  
 ##### Занулим на всякий случай суперблоки
 $ sudo mdadm --zero-superblock --force /dev/sd{b,c}
 ##### Создать рейд
@@ -24,7 +24,9 @@ $ sudo mdadm /dev/md0 --fail /dev/sdd
 $ cat /proc/mdstat
 $ sudo mdadm -D /dev/md0
 ##### Удалить “сломанный” диск из массива
-```$ sudo mdadm /dev/md0 --remove /dev/sdd```
+```
+$ sudo mdadm /dev/md0 --remove /dev/sdd
+```
 ##### Представим, что мы вставили новый диск в сервер и теперь нам нужно добавить его в RAID. Диск должен пройти стадию rebuilding. Например, если это был RAID 1 (зеркало), то данные должны скопироваться на новый диск.
 ```
 $ sudo mdadm /dev/md0 --add /dev/sdd  
