@@ -3,17 +3,17 @@
 # Собрать RAID0/1/5/10
 
 # Смотрим блочные устройства
-$ sudo apt install lsscsi
-$ sudo lshw -short | grep disk
+$ sudo apt install lsscsi  
+$ sudo lshw -short | grep disk  
 # Занулим на всякий случай суперблоки
 $ sudo mdadm --zero-superblock --force /dev/sd{b,c}
 # Создать рейд
-$ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}
-$ cat /proc/mdstat
-$ sudo mdadm -D /dev/md0
+$ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}  
+$ cat /proc/mdstat  
+$ sudo mdadm -D /dev/md0  
 # Создание файловой системы и монтирование
-$ sudo mkfs.ext4 -F /dev/md0
-$ sudo mkdir /mnt/md0
+$ sudo mkfs.ext4 -F /dev/md0  
+$ sudo mkdir /mnt/md0  
 $ sudo mount /dev/md0 /mnt/md0
 
 # Сломать/починить RAID
