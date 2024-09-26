@@ -65,3 +65,4 @@ $ sudo mdadm --zero-superblock /dev/sda1
 $ sudo mdadm --zero-superblock /dev/sdb1  
 $ sudo mdadm --zero-superblock /dev/sdc1  
 ```
+##### В завершении, убираем ссылки на разобранный RAID-массив в /etc/mdadm/mdadm.conf (в Debian) или в /etc/mdadm.conf (в CentOS), если они делались там ранее.
