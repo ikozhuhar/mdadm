@@ -3,7 +3,7 @@
 #### Собрать RAID0/1/5/10
 
 ###### Смотрим блочные устройства
-```
+```php
 $ sudo apt install lsscsi  
 $ sudo lshw -short | grep disk
 ``` 
