@@ -1,6 +1,6 @@
 # mdadm
 
-## Собрать RAID0/1/5/10
+### Собрать RAID0/1/5/10
 
 ##### Смотрим блочные устройства
 ```
@@ -24,7 +24,7 @@ $ sudo mkdir /mnt/md0
 $ sudo mount /dev/md0 /mnt/md0
 ```
 
-#### Сломать/починить RAID
+### Сломать/починить RAID
 
 ##### Можно, искусственно “зафейлив” одно из блочных устройств
 ```
@@ -44,4 +44,24 @@ $ sudo mdadm /dev/md0 --remove /dev/sdd
 $ sudo mdadm /dev/md0 --add /dev/sdd  
 $ sudo mdadm -D /dev/md0  
 $ cat /proc/mdstat
+```
+### Как удалить RAID-массив
+
+##### Отмонтировать RAID
+```
+$ sudo umount /mount/md0
+```
+
+##### Останавливаем RAID-массив
+```
+$ sudo mdadm -S /dev/md0
+```
+
+##### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
+```
+$ sudo mdadm --zero-superblock --force /dev/sd{b,c}  
+или  
+$ sudo mdadm --zero-superblock /dev/sda1  
+$ sudo mdadm --zero-superblock /dev/sdb1  
+$ sudo mdadm --zero-superblock /dev/sdc1  
 ```
