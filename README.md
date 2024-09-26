@@ -26,6 +26,6 @@ $ sudo mdadm -D /dev/md0
 # Удалить “сломанный” диск из массива
 $ sudo mdadm /dev/md0 --remove /dev/sdd
 # Представим, что мы вставили новый диск в сервер и теперь нам нужно добавить его в RAID. Диск должен пройти стадию rebuilding. Например, если это был RAID 1 (зеркало), то данные должны скопироваться на новый диск.
-$ sudo mdadm /dev/md0 --add /dev/sdd
-$ sudo mdadm -D /dev/md0
+$ sudo mdadm /dev/md0 --add /dev/sdd  
+$ sudo mdadm -D /dev/md0  
 $ cat /proc/mdstat
