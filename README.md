@@ -30,7 +30,7 @@ $ sudo mount /dev/md0 /mnt/md0
 ```
 $ sudo mdadm /dev/md0 --fail /dev/sdd
 ```
-###### Посмотрим, как это отразилось на RAID:
+###### Посмотрим, как это отразилось на RAID
 ```
 $ cat /proc/mdstat
 $ sudo mdadm -D /dev/md0
@@ -39,7 +39,7 @@ $ sudo mdadm -D /dev/md0
 ```php
 $ sudo mdadm /dev/md0 --remove /dev/sdd
 ```
-###### Представим, что мы вставили новый диск в сервер и теперь нам нужно добавить его в RAID. Диск должен пройти стадию rebuilding. Например, если это был RAID 1 (зеркало), то данные должны скопироваться на новый диск.
+###### Представим, что мы вставили новый диск в сервер и теперь нам нужно добавить его в RAID. Диск должен пройти стадию rebuilding. Например, если это был RAID 1 (зеркало), то данные должны скопироваться на новый диск
 ```php
 $ sudo mdadm /dev/md0 --add /dev/sdd  
 $ sudo mdadm -D /dev/md0  
@@ -65,4 +65,4 @@ $ sudo mdadm --zero-superblock /dev/sda1
 $ sudo mdadm --zero-superblock /dev/sdb1  
 $ sudo mdadm --zero-superblock /dev/sdc1  
 ```
-###### В завершении, убираем ссылки на разобранный RAID-массив в /etc/mdadm/mdadm.conf (в Debian) или в /etc/mdadm.conf (в CentOS), если они делались там ранее.
+###### В завершении, убираем ссылки на разобранный RAID-массив в /etc/mdadm/mdadm.conf (в Debian) или в /etc/mdadm.conf (в CentOS), если они делались там ранее
