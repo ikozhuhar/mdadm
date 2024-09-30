@@ -4,7 +4,7 @@
 
 ###### Смотрим блочные устройства
 ```
-lsblk 
+sudo lsblk 
 sudo lshw -short | grep disk
 ```
 ![image](https://github.com/user-attachments/assets/7191fe78-2b48-4e84-9189-d9ae79453c67)
