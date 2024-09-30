@@ -1,6 +1,6 @@
 ### Работа с mdadm
 
-### <a name='toc'>Содержание</a>
+#### <a name='toc'>Содержание</a>
 1. [Смотрим блочные устройства](#look_blk)
 2. [Собрать RAID-массив](#create_raid)
 3. [Создание конфигурационного файла mdadm.conf](#conf_file)
@@ -22,7 +22,7 @@ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f}
 ```
 ![image](https://github.com/user-attachments/assets/536cde52-6250-4874-b10b-61b4c3ecaaf4)
 
-##### 2. [[⬆]](#toc) <a name='create_raid'>Собрать RAID0/1/5/10</a>
+#### 2. [[⬆]](#toc) <a name='create_raid'>Собрать RAID0/1/5/10</a>
 ```
 sudo mdadm --create --verbose /dev/md0 --level 6 --raid-device=5 /dev/sd{b,c,d,e,f}  
 ```
@@ -35,7 +35,7 @@ sudo mdadm -D /dev/md0
 ```
 ![image](https://github.com/user-attachments/assets/ae8bf07a-0f96-42b7-b7ec-3a594c1f25f6)
 
-##### 3. [[⬆]](#toc) <a name='conf_file'>Создание конфигурационного файла mdadm.conf</a>
+#### 3. [[⬆]](#toc) <a name='conf_file'>Создание конфигурационного файла mdadm.conf</a>
 
 ##### Для того, чтобы быть уверенным, что ОС запомнила, какой RAID массив требуется создать и какие компоненты в него входят, создадим файл mdadm.conf. Убедимся, что информация верна:
 ```
@@ -50,7 +50,7 @@ mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >> /etc/mdadm/mdadm.conf
 ```
 ![image](https://github.com/user-attachments/assets/60c52ddb-f31a-4d60-a43d-6cea30ae8a7e)
 
-##### 4. [[⬆]](#toc) <a name='create_fs'>Создание файловой системы и монтирование</a>
+#### 4. [[⬆]](#toc) <a name='create_fs'>Создание файловой системы и монтирование</a>
 ```
 sudo mkfs.ext4 -F /dev/md0  
 ```
