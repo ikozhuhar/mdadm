@@ -15,16 +15,43 @@ sudo lshw -short | grep disk
 
 ##### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
 ```
-mdadm --zero-superblock --force /dev/sd{b,c,d,e,f,g}
+sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f}
 ```
 ![image](https://github.com/user-attachments/assets/536cde52-6250-4874-b10b-61b4c3ecaaf4)
 
 ##### 2. [[⬆]](#toc) <a name='create_raid'>Собрать RAID0/1/5/10</a>
 ```
-$ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}  
-$ cat /proc/mdstat  
-$ sudo mdadm -D /dev/md0
-``` 
+sudo mdadm --create --verbose /dev/md0 --level 6 --raid-device=5 /dev/sd{b,c,d,e,f}  
+```
+![image](https://github.com/user-attachments/assets/c77a01b0-438a-47ff-83ff-d0014b6e714f)
+
+###### Проверяем, что RAID собрался нормально:
+```
+cat /proc/mdstat  
+sudo mdadm -D /dev/md0
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ###### Создание файловой системы и монтирование
 ```php
 $ sudo mkfs.ext4 -F /dev/md0  
