@@ -2,11 +2,11 @@
 
 #### <a name='toc'>Содержание</a>
 1. [Смотрим блочные устройства](#look_blk)
-2. [Собрать RAID0/1/5/10](#create_raid)
+2. [Собрать RAID-массив](#create_raid)
 3. [Сломать/починить RAID](#break_fix)
 4. [Удалить RAID-массив](#delete_raid)
 
-#### Смотрим блочные устройства
+#### 1. [[⬆]](#toc) <a name='look_blk'>Смотрим блочные устройства</a>
 ```
 sudo lsblk 
 sudo lshw -short | grep disk
