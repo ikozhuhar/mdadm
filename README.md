@@ -11,8 +11,10 @@ sudo lshw -short | grep disk
 
 ###### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
 ```
-$ sudo mdadm --zero-superblock --force /dev/sd{b,c}
+$ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f,g}
 ```
+![image](https://github.com/user-attachments/assets/eca497c5-4464-409d-9ef8-b253d741839b)
+
 ###### Создать рейд
 ```
 $ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}  
