@@ -79,19 +79,25 @@ sudo mdadm -D /dev/md0
 ```
 ![image](https://github.com/user-attachments/assets/12036513-737d-48e2-8fe7-25d6451a9bf0)
 
-
-
-
-###### Удалить “сломанный” диск из массива
-```php
-$ sudo mdadm /dev/md0 --remove /dev/sdd
+##### Удалить “сломанный” диск из массива
 ```
-###### Представим, что мы вставили новый диск в сервер и теперь нам нужно добавить его в RAID. Диск должен пройти стадию rebuilding. Например, если это был RAID 1 (зеркало), то данные должны скопироваться на новый диск
-```php
-$ sudo mdadm /dev/md0 --add /dev/sdd  
-$ sudo mdadm -D /dev/md0  
-$ cat /proc/mdstat
+sudo mdadm /dev/md0 --remove /dev/sdd
 ```
+![image](https://github.com/user-attachments/assets/c471e0ef-2f2c-434e-8743-ad353be97f52)
+
+##### Представим, что мы вставили новый диск в сервер и теперь нам нужно добавить его в RAID. Диск должен пройти стадию rebuilding. Например, если это был RAID 1 (зеркало), то данные должны скопироваться на новый диск
+```
+sudo mdadm /dev/md0 --add /dev/sdd  
+cat /proc/mdstat
+sudo mdadm -D /dev/md0  
+```
+![image](https://github.com/user-attachments/assets/76f52687-0309-4159-963a-ae1f7bac5997)
+
+
+
+
+
+
 #### Как удалить RAID-массив
 
 ###### Отмонтировать RAID
