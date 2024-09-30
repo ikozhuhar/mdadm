@@ -117,3 +117,21 @@ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f}
 ##### В завершении, убираем ссылки на разобранный RAID-массив в /etc/mdadm/mdadm.conf (в Debian) или в /etc/mdadm.conf (в CentOS), если они делались там ранее
 
 #### 7. [[⬆]](#toc) <a name='create_gpt'>Создать GPT раздел, пять партиций и смонтировать их на диск</a>
+
+##### Создаем раздел GPT и партиции на RAID
+```
+parted -s /dev/md0 mklabel gpt
+parted /dev/md0 mkpart primary ext4 0% 20%
+parted /dev/md0 mkpart primary ext4 20% 40%
+parted /dev/md0 mkpart primary ext4 40% 60%
+parted /dev/md0 mkpart primary ext4 60% 80%
+parted /dev/md0 mkpart primary ext4 80% 100%
+```
+![image](https://github.com/user-attachments/assets/dc3fadcb-7a04-4e95-9ef7-f6b2bdecec93)
+
+##### Далее можно создать на этих партициях ФС
+
+
+
+
+
