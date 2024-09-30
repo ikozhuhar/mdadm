@@ -1,18 +1,18 @@
-## Работа с mdadm
+### Работа с mdadm
 
 #### Собрать RAID0/1/5/10
 
 ###### Смотрим блочные устройства
-```php
-$ sudo apt install lsscsi  
-$ sudo lshw -short | grep disk
+```
+sudo apt install lsscsi  
+sudo lshw -short | grep disk
 ``` 
 ###### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
-```php
+```
 $ sudo mdadm --zero-superblock --force /dev/sd{b,c}
 ```
 ###### Создать рейд
-```php
+```
 $ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}  
 $ cat /proc/mdstat  
 $ sudo mdadm -D /dev/md0
