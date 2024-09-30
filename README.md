@@ -1,8 +1,6 @@
 ### Работа с mdadm
 
-#### Собрать RAID0/1/5/10
-
-###### Смотрим блочные устройства
+#### Смотрим блочные устройства
 ```
 sudo lsblk 
 sudo lshw -short | grep disk
@@ -15,7 +13,7 @@ $ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f,g}
 ```
 ![image](https://github.com/user-attachments/assets/eca497c5-4464-409d-9ef8-b253d741839b)
 
-###### Создать рейд
+###### Собрать RAID0/1/5/10
 ```
 $ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}  
 $ cat /proc/mdstat  
