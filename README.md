@@ -35,13 +35,18 @@ sudo mdadm -D /dev/md0
 
 ##### 3. [[⬆]](#toc) <a name='conf_file'>Создание конфигурационного файла mdadm.conf</a>
 
-##### Для того, чтобы быть уверенным, что ОС запомнила, какой RAID массив требуется создать и какие компоненты в него входят, создадим файл mdadm.conf  
-##### Сначала убедимся, что информация верна:
+##### Для того, чтобы быть уверенным, что ОС запомнила, какой RAID массив требуется создать и какие компоненты в него входят, создадим файл mdadm.conf. Убедимся, что информация верна:
 ```
 sudo mdadm --detail --scan --verbose
 ```
+![image](https://github.com/user-attachments/assets/844377e9-83b6-46db-861c-2854f6a14fb5)
 
-
+##### А затем в две команды создадим файл mdadm.conf
+```
+echo "DEVICE partitions" > /etc/mdadm/mdadm.conf
+mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >> /etc/mdadm/mdadm.conf
+```
+![image](https://github.com/user-attachments/assets/60c52ddb-f31a-4d60-a43d-6cea30ae8a7e)
 
 
 
