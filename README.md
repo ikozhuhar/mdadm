@@ -3,8 +3,9 @@
 #### <a name='toc'>Содержание</a>
 1. [Смотрим блочные устройства](#look_blk)
 2. [Собрать RAID-массив](#create_raid)
-3. [Сломать/починить RAID](#break_fix)
-4. [Удалить RAID-массив](#delete_raid)
+3. [Создание конфигурационного файла mdadm.conf](#conf_file)
+4. [Сломать/починить RAID-массив](#break_fix)
+5. [Удалить RAID-массив](#delete_raid)
 
 #### 1. [[⬆]](#toc) <a name='look_blk'>Смотрим блочные устройства</a>
 ```
@@ -25,13 +26,20 @@ sudo mdadm --create --verbose /dev/md0 --level 6 --raid-device=5 /dev/sd{b,c,d,e
 ```
 ![image](https://github.com/user-attachments/assets/c77a01b0-438a-47ff-83ff-d0014b6e714f)
 
-###### Проверяем, что RAID собрался нормально:
+##### Проверяем, что RAID собрался нормально:
 ```
 cat /proc/mdstat  
 sudo mdadm -D /dev/md0
 ```
+![image](https://github.com/user-attachments/assets/ae8bf07a-0f96-42b7-b7ec-3a594c1f25f6)
 
+##### 3. [[⬆]](#toc) <a name='conf_file'>Создание конфигурационного файла mdadm.conf</a>
 
+##### Для того, чтобы быть уверенным, что ОС запомнила, какой RAID массив требуется создать и какие компоненты в него входят, создадим файл mdadm.conf  
+##### Сначала убедимся, что информация верна:
+```
+sudo mdadm --detail --scan --verbose
+```
 
 
 
