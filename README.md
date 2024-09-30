@@ -1,5 +1,11 @@
 ### Работа с mdadm
 
+#### <a name='toc'>Содержание</a>
+1. [Смотрим блочные устройства](#look_blk)
+2. [Собрать RAID0/1/5/10](#create_raid)
+3. [Сломать/починить RAID](#break_fix)
+4. [Удалить RAID-массив](#delete_raid)
+
 #### Смотрим блочные устройства
 ```
 sudo lsblk 
@@ -13,7 +19,7 @@ $ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f,g}
 ```
 ![image](https://github.com/user-attachments/assets/eca497c5-4464-409d-9ef8-b253d741839b)
 
-###### Собрать RAID0/1/5/10
+##### Собрать RAID0/1/5/10
 ```
 $ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}  
 $ cat /proc/mdstat  
