@@ -146,5 +146,8 @@ for i in $(seq 1 5); do mount /dev/md0p$i /raid/part$i; done
 ```
 ![image](https://github.com/user-attachments/assets/2754fcd0-90b0-40bf-9077-b9d3354696ca)
 
+##### Смотрим результат
+
+![image](https://github.com/user-attachments/assets/c1d233cb-198c-40c2-b834-eff9e2900888)
 
 
