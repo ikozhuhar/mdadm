@@ -7,6 +7,7 @@
 4. [Создание файловой системы и монтирование](#create_fs)
 5. [Сломать/починить RAID-массив](#break_fix)
 6. [Удалить RAID-массив](#delete_raid)
+7. [Создать GPT раздел, пять партиций и смонтировать их на диск](#create_gpt)
 
 #### 1. [[⬆]](#toc) <a name='look_blk'>Смотрим блочные устройства</a>
 ```
@@ -64,7 +65,7 @@ sudo lsblk -o +UUID,NAME,FSTYPE
 ![image](https://github.com/user-attachments/assets/01a17b1a-9e41-4346-83e6-70827d06fc01)
 
 
-#### 4. [[⬆]](#toc) <a name='create_fs'>Сломать/починить RAID</a>
+#### 5. [[⬆]](#toc) <a name='create_fs'>Сломать/починить RAID</a>
 
 ##### Можно, искусственно “зафейлить” одно из блочных устройств
 ```
@@ -94,7 +95,7 @@ sudo mdadm -D /dev/md0
 ![image](https://github.com/user-attachments/assets/76f52687-0309-4159-963a-ae1f7bac5997)
 
 
-#### 5. [[⬆]](#toc) <a name='delete_raid'>Как удалить RAID-массив</a>
+#### 6. [[⬆]](#toc) <a name='delete_raid'>Как удалить RAID-массив</a>
 
 ##### Отмонтировать RAID
 ```
@@ -114,3 +115,5 @@ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f}
 
 
 ##### В завершении, убираем ссылки на разобранный RAID-массив в /etc/mdadm/mdadm.conf (в Debian) или в /etc/mdadm.conf (в CentOS), если они делались там ранее
+
+#### 7. [[⬆]](#toc) <a name='create_gpt'>Создать GPT раздел, пять партиций и смонтировать их на диск</a>
