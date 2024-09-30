@@ -4,8 +4,9 @@
 1. [Смотрим блочные устройства](#look_blk)
 2. [Собрать RAID-массив](#create_raid)
 3. [Создание конфигурационного файла mdadm.conf](#conf_file)
-4. [Сломать/починить RAID-массив](#break_fix)
-5. [Удалить RAID-массив](#delete_raid)
+4. [Создание файловой системы и монтирование](#create_fs)
+5. [Сломать/починить RAID-массив](#break_fix)
+6. [Удалить RAID-массив](#delete_raid)
 
 #### 1. [[⬆]](#toc) <a name='look_blk'>Смотрим блочные устройства</a>
 ```
@@ -48,41 +49,39 @@ mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >> /etc/mdadm/mdadm.conf
 ```
 ![image](https://github.com/user-attachments/assets/60c52ddb-f31a-4d60-a43d-6cea30ae8a7e)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-###### Создание файловой системы и монтирование
-```php
-$ sudo mkfs.ext4 -F /dev/md0  
-$ sudo mkdir /mnt/md0  
-$ sudo mount /dev/md0 /mnt/md0
+##### 4. [[⬆]](#toc) <a name='create_fs'>Создание файловой системы и монтирование</a>
 ```
+sudo mkfs.ext4 -F /dev/md0  
+```
+![image](https://github.com/user-attachments/assets/e2bbb149-daee-4000-b51e-180c9d850ec2)
 
-#### Сломать/починить RAID
+##### Смотрим результат
+```
+sudo mkdir /mnt/md0  
+sudo mount /dev/md0 /mnt/md0
+sudo lsblk -o +UUID,NAME,FSTYPE
+```
+![image](https://github.com/user-attachments/assets/01a17b1a-9e41-4346-83e6-70827d06fc01)
 
-###### Можно, искусственно “зафейлить” одно из блочных устройств
+
+#### 4. [[⬆]](#toc) <a name='create_fs'>Сломать/починить RAID</a>
+
+##### Можно, искусственно “зафейлить” одно из блочных устройств
 ```
-$ sudo mdadm /dev/md0 --fail /dev/sdd
+sudo mdadm /dev/md0 --fail /dev/sdd
 ```
-###### Посмотрим, как это отразилось на RAID
+![image](https://github.com/user-attachments/assets/a6368df7-cb6c-4ea9-a5ee-f85a2af87e20)
+
+##### Посмотрим, как это отразилось на RAID
 ```
-$ cat /proc/mdstat
-$ sudo mdadm -D /dev/md0
+cat /proc/mdstat
+sudo mdadm -D /dev/md0
 ```
+![image](https://github.com/user-attachments/assets/12036513-737d-48e2-8fe7-25d6451a9bf0)
+
+
+
+
 ###### Удалить “сломанный” диск из массива
 ```php
 $ sudo mdadm /dev/md0 --remove /dev/sdd
