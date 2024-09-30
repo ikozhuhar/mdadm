@@ -11,7 +11,7 @@
 sudo lsblk 
 sudo lshw -short | grep disk
 ```
-![image](https://github.com/user-attachments/assets/7191fe78-2b48-4e84-9189-d9ae79453c67)
+![image](https://github.com/user-attachments/assets/d461cc08-d471-431c-b0b0-6c492a8bcc43)
 
 ###### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
 ```
