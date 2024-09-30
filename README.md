@@ -65,7 +65,7 @@ sudo lsblk -o +UUID,NAME,FSTYPE
 ![image](https://github.com/user-attachments/assets/01a17b1a-9e41-4346-83e6-70827d06fc01)
 
 
-#### 5. [[⬆]](#toc) <a name='create_fs'>Сломать/починить RAID</a>
+#### 5. [[⬆]](#toc) <a name='break_fix'>Сломать/починить RAID</a>
 
 ##### Можно, искусственно “зафейлить” одно из блочных устройств
 ```
