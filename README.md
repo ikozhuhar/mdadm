@@ -11,15 +11,15 @@
 sudo lsblk 
 sudo lshw -short | grep disk
 ```
-![image](https://github.com/user-attachments/assets/d461cc08-d471-431c-b0b0-6c492a8bcc43)
+![image](https://github.com/user-attachments/assets/32556c3a-4117-4db8-9531-6da890478f15)
 
 ###### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
 ```
-$ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f,g}
+sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f,g}
 ```
-![image](https://github.com/user-attachments/assets/eca497c5-4464-409d-9ef8-b253d741839b)
+![image](https://github.com/user-attachments/assets/536cde52-6250-4874-b10b-61b4c3ecaaf4)
 
-##### Собрать RAID0/1/5/10
+##### 2. [[⬆]](#toc) <a name='create_raid'>Собрать RAID0/1/5/10</a>
 ```
 $ sudo mdadm --create --verbose /dev/md0 --level 1 --raid-device=2 /dev/sd{d,c}  
 $ cat /proc/mdstat  
