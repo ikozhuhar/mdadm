@@ -129,9 +129,22 @@ parted /dev/md0 mkpart primary ext4 80% 100%
 ```
 ![image](https://github.com/user-attachments/assets/dc3fadcb-7a04-4e95-9ef7-f6b2bdecec93)
 
+##### Смотрим результат
+![image](https://github.com/user-attachments/assets/1cac4c56-c3cb-4e77-a5f2-15a071c7ae5d)
+
+
 ##### Далее можно создать на этих партициях ФС
+```
+for i in $(seq 1 5); do sudo mkfs.ext4 /dev/md0p$i; done
+```
+![image](https://github.com/user-attachments/assets/44642dc2-1265-4b20-b1ab-5aa583a9979e)
 
-
+##### И смонтировать их по каталогам
+```
+mkdir -p /raid/part{1,2,3,4,5}
+for i in $(seq 1 5); do mount /dev/md0p$i /raid/part$i; done
+```
+![image](https://github.com/user-attachments/assets/2754fcd0-90b0-40bf-9077-b9d3354696ca)
 
 
 
