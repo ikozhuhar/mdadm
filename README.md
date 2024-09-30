@@ -6,8 +6,9 @@
 ```
 lsblk 
 sudo lshw -short | grep disk
+```
 ![image](https://github.com/user-attachments/assets/7191fe78-2b48-4e84-9189-d9ae79453c67)
-``` 
+
 ###### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
 ```
 $ sudo mdadm --zero-superblock --force /dev/sd{b,c}
