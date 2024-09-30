@@ -1,6 +1,6 @@
 ### Работа с mdadm
 
-#### <a name='toc'>Содержание</a>
+### <a name='toc'>Содержание</a>
 1. [Смотрим блочные устройства](#look_blk)
 2. [Собрать RAID-массив](#create_raid)
 3. [Создание конфигурационного файла mdadm.conf](#conf_file)
@@ -94,28 +94,20 @@ sudo mdadm -D /dev/md0
 ![image](https://github.com/user-attachments/assets/76f52687-0309-4159-963a-ae1f7bac5997)
 
 
-
-
-
-
-#### Как удалить RAID-массив
+#### 5. [[⬆]](#toc) <a name='delete_raid'>Как удалить RAID-массив</a>
 
 ###### Отмонтировать RAID
-```php
-$ sudo umount /mnt/md0
+```
+sudo umount /mnt/md0
 ```
 
 ###### Останавливаем RAID-массив
-```php
-$ sudo mdadm -S /dev/md0
+```
+sudo mdadm -S /dev/md0
 ```
 
 ###### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
-```php
-$ sudo mdadm --zero-superblock --force /dev/sd{b,c}  
-или  
-$ sudo mdadm --zero-superblock /dev/sda1  
-$ sudo mdadm --zero-superblock /dev/sdb1  
-$ sudo mdadm --zero-superblock /dev/sdc1  
+```
+sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f} 
 ```
 ###### В завершении, убираем ссылки на разобранный RAID-массив в /etc/mdadm/mdadm.conf (в Debian) или в /etc/mdadm.conf (в CentOS), если они делались там ранее
