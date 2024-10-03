@@ -1,0 +1,71 @@
+---
+- name: 'Создание зеркального рейда на Дебе'
+  hosts: all
+  become: yes
+  tasks:
+  
+    - name: 'Устанавливаем необходимые пакеты'
+      apt:
+        name: ['mdadm', 'parted']
+        state: present
+        update_cache: yes
+
+    - name: 'Создаем раздел на диске /dev/sda'
+      parted:
+        device: /dev/sda
+        number: 1
+        state: present
+        part_start: 1
+        part_end: 100%
+        part_type: primary
+
+    - name: 'Создаем раздел на диске /dev/sdb'
+      parted:
+        device: /dev/sdb
+        number: 1
+        state: present
+        part_start: 1
+        part_end: 100%
+        part_type: primary
+
+    - name: 'Создаём рейд-1 и даём ему имя /dev/md0'
+      command: mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/sda1 /dev/sdb1
+      args:
+        creates: /dev/md0
+        
+    - name: 'Ждем пока рейд создасться'
+      pause:
+        seconds: 30
+
+    - name: 'Создаём конфиг файл'
+      command: mdadm --detail --scan >> /etc/mdadm/mdadm.conf
+      args:
+        creates: /etc/mdadm/mdadm.conf
+
+    - name: 'Обновляем начальный образ ОС'
+      command: update-initramfs -u
+
+    - name: 'Создаём FS /dev/md0'
+      filesystem:
+        fstype: ext4
+        dev: /dev/md0
+
+    - name: 'Делаем точку монтирования'
+      file:
+        path: /mnt/raid
+        state: directory
+
+    - name: 'Mмонтируем /dev/md0 в /mnt/raid'
+      mount:
+        path: /mnt/raid
+        src: /dev/md0
+        fstype: ext4
+        state: mounted
+
+    - name: 'Добавляем в fstab'
+      mount:
+        path: /mnt/raid
+        src: /dev/md0
+        fstype: ext4
+        opts: defaults
+        state: present
