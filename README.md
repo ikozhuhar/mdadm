@@ -109,7 +109,8 @@ sudo mdadm -S /dev/md0
 
 ##### Чтобы в дальнейшем система не пыталась автоматически собрать массив (например после перезагрузки) из дисков, которые участвовали в RAID-массиве, необходимо очистить супер-блоки на этих дисках
 ```
-sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,f}
+sudo mdadm --zero-superblock /dev/sdb1
+sudo mdadm --zero-superblock /dev/sdc1
 ```
 ![image](https://github.com/user-attachments/assets/c494e347-8cf2-4614-a4e9-44e8d6bc9973)
 
