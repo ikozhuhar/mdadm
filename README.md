@@ -8,6 +8,7 @@
 5. [Сломать/починить RAID-массив](#break_fix)
 6. [Удалить RAID-массив](#delete_raid)
 7. [Раздел GPT, пять партиций и их смонтирование на диск](#create_gpt)
+8. [Автоматизация создания RAID1 c Ansible](#creating_automated)
 
 #### 1. [[⬆]](#toc) <a name='look_blk'>Смотрим блочные устройства</a>
 ```
@@ -150,5 +151,17 @@ for i in $(seq 1 5); do mount /dev/md0p$i /raid/part$i; done
 ##### Смотрим результат
 
 ![image](https://github.com/user-attachments/assets/c1d233cb-198c-40c2-b834-eff9e2900888)
+
+#### [[⬆]](#toc) <a name='creating_automated'>Автоматизация создания RAID1 c Ansible</a>
+
+##### Структура
+![image](https://github.com/user-attachments/assets/d5a04206-0ff0-43cd-9503-e20028cac8ed)
+
+##### Запускаем
+```
+ansible-playbook playbook_raid-1.yml
+```
+
+
 
 
