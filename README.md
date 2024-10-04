@@ -152,10 +152,10 @@ for i in $(seq 1 5); do mount /dev/md0p$i /raid/part$i; done
 
 ![image](https://github.com/user-attachments/assets/c1d233cb-198c-40c2-b834-eff9e2900888)
 
-#### [[⬆]](#toc) <a name='creating_automated'>Автоматизация создания RAID1 c Ansible</a>
+#### 8. [[⬆]](#toc) <a name='creating_automated'>Автоматизация создания RAID1 c Ansible</a>
 
 ##### Структура
-![image](https://github.com/user-attachments/assets/d5a04206-0ff0-43cd-9503-e20028cac8ed)
+![image](https://github.com/user-attachments/assets/09eea266-c007-4f6f-982f-ba33289a5793)
 
 ##### Запускаем
 ```
